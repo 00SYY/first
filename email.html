@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOTS 邮箱</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-top: 5vh;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .email-wrapper {
+            position: relative;
+            display: inline-block;
+            margin: 2rem 0;
+        }
+
+        .email-button {
+            background: #3498db;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .email-button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .email-icon {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .copied-message {
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #27ae60;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        footer {
+            margin-top: 3rem;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem;
+                margin-top: 2rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📧 联系创作者</h1>
+        
+        <div class="email-wrapper">
+            <!-- 反爬虫邮箱保护 -->
+            <button class="email-button" onclick="revealEmail()">
+                <svg class="email-icon" viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+                <span>点击显示邮箱</span>
+            </button>
+            <div class="copied-message" id="copiedMessage">已复制到剪贴板！</div>
+        </div>
+
+        <footer>
+            <p>📌 请通过上方邮箱联系我</p>
+            <p>⏰ 我会在收到邮件后今早回复</p>
+            <p>请标注称呼等信息</p>
+        </footer>
+    </div>
+
+    <script>
+        // 邮箱混淆处理
+        function decryptEmail(parts) {
+            return parts[1] + '@' + parts[0] + '.com';
+        }
+
+        function revealEmail() {
+            const emailParts = ['163', 'tots666666'];
+            const fullEmail = decryptEmail(emailParts);
+            
+            // 创建虚拟输入框进行复制
+            const tempInput = document.createElement('input');
+            tempInput.value = fullEmail;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            // 显示反馈动画
+            const button = document.querySelector('.email-button');
+            const message = document.getElementById('copiedMessage');
+            button.innerHTML = `
+                <svg class="email-icon" viewBox="0 0 24 24">
+                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                </svg>
+                ${fullEmail}
+            `;
+            button.style.background = '#27ae60';
+            message.style.opacity = '1';
+            
+            setTimeout(() => {
+                message.style.opacity = '0';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
