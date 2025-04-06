@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资源分享菜单</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .tool-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .tool-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .tool-title {
+            font-size: 1.5rem;
+            color: #34495e;
+            margin-bottom: 15px;
+        }
+        
+        .tool-desc {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 资源分享菜单</h1>
+        <a href="sponsor.html">支持一下作者</a>
+        <div class="tools-grid">
+            <a href="流浪地球_1080p.zip" download="流浪地球_1080p.zip" class="tool-card">
+                <div class="tool-icon">👾</div>
+                <h2 class="tool-title">流浪地球[电影]</h2>
+                <p class="tool-desc">流浪地球1+2</p>
+            </a>
+            <a href="TOTS的记账本.7z" download="TOTS的记账本.7z" class="tool-card">
+                <div class="tool-icon">🎁</div>
+                <h2 class="tool-title">记账本</h2>
+                <p class="tool-desc">自制python小程序(已打包)</p>
+            </a>
+            <a href="#" download="file name" class="tool-card">
+                <div class="tool-icon">🕸️</div>
+                <h2 class="tool-title">实用网站推荐</h2>
+                <p class="tool-desc">很好的工具</p>
+            </a>
+            <a href="#" download="file name" class="tool-card">
+                <div class="tool-icon">？</div>
+                <h2 class="tool-title">敬请期待</h2>
+                <p class="tool-desc">开发中，敬请期待...</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
